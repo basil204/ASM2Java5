@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Table</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet"
+        href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    .password-input {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+<a href="/customer/refund" type="button" class="btn btn-primary">aaaaaaaa</a>
+<div class="container mt-5">
+  <h2>User Table</h2>
+  <table class="table">
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Username</th>
+      <th>Password</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="x : ${datacustomer}" th:if="${x.trangthai == 1}">
+      <td th:text="${x.id}"></td>
+      <td th:text="${x.name}"></td>
+      <td th:text="${x.email}"></td>
+      <td th:text="${x.user.name}"></td>
+      <th>
+        <a th:href="@{/customer/edit/{id}(id=${x.id})}" type="button"
+           class="btn btn-primary">edit</a>
+        <a th:href="@{/customer/delete/{id}(id=${x.id})}" type="button"
+           class="btn btn-primary">Khoa</a>
+        <a th:href="@{/customer/add}" type="button" class="btn btn-primary">add</a>
+      </th>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Bootstrap JS and dependencies -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+</body>
+</html>

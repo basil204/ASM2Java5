@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Table</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet"
+        href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    .password-input {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+<a th:href="@{/Views/refund}" type="button" class="btn btn-primary">refund</a>
+<div class="container mt-5">
+  <h2>User Table</h2>
+  <table class="table">
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Username</th>
+      <th>Password</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="x : ${datausers}" th:if="${x.trangthai == 1}">
+      <td th:text="${x.id}"></td>
+      <td th:text="${x.name}"></td>
+      <td th:text="${x.username}"></td>
+      <td>
+        <span class="password-text" th:text="${x.password}"></span>
+        <input type="password" class="password-input" th:value="${x.password}" disabled>
+        <button class="btn btn-sm btn-outline-secondary toggle-password">Hide</button>
+      </td>
+      <td>
+        <a th:href="@{/Views/add}" type="button" class="btn btn-primary">add</a>
+        <a th:href="@{/Views/edit/{id}(id=${x.id})}" type="button" class="btn btn-primary">edit</a>
+        <a th:href="@{/Views/delete/{id}(id=${x.id})}" type="button"
+           class="btn btn-primary">Khoa</a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Bootstrap JS and dependencies -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<script>
+  $(document).ready(function () {
+    $('.toggle-password').click(function () {
+      var $passwordInput = $(this).siblings('.password-input');
+      var $passwordText = $(this).siblings('.password-text');
+
+      $passwordInput.toggle();
+      $passwordText.toggle();
+
+      if ($passwordInput.is(':visible')) {
+        $(this).text('Show');
+      } else {
+        $(this).text('Hide');
+      }
+    });
+  });
+</script>
+
+</body>
+</html>

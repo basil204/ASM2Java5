@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Table</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet"
+        href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    .password-input {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+<div class="container mt-5">
+  <h2>User Table</h2>
+  <table class="table">
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Username</th>
+      <th>Password</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="x : ${datacustomer}" th:if="${x.trangthai == 0}">
+      <td th:text="${x.id}"></td>
+      <td th:text="${x.name}"></td>
+      <td th:text="${x.email}"></td>
+      <td th:text="${x.user.name}"></td>
+      <th>
+      <td>
+        <a th:href="@{/customer/delete/{id}(id=${x.id})}" type="button"
+           class="btn btn-primary">refund</a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Bootstrap JS and dependencies -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<script>
+  $(document).ready(function () {
+    $('.toggle-password').click(function () {
+      var $passwordInput = $(this).siblings('.password-input');
+      var $passwordText = $(this).siblings('.password-text');
+
+      $passwordInput.toggle();
+      $passwordText.toggle();
+
+      if ($passwordInput.is(':visible')) {
+        $(this).text('Show');
+      } else {
+        $(this).text('Hide');
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
