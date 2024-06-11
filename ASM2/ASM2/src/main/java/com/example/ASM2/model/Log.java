@@ -4,7 +4,14 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
+import java.sql.Timestamp;
+import java.util.Date;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Table(name = "log")
 @Entity
@@ -16,6 +23,7 @@ public class Log {
   private int user_id;
   private String action;
   private String notes;
+  private Timestamp timestamp;
 
   public Log() {
   }
@@ -57,5 +65,13 @@ public class Log {
 
   public void setNotes(String notes) {
     this.notes = notes;
+  }
+
+  public Timestamp getTimestamp() {
+    return timestamp;
+  }
+
+  public void setTimestamp(Timestamp timestamp) {
+    this.timestamp = timestamp;
   }
 }

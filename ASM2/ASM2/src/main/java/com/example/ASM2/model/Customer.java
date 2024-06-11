@@ -7,6 +7,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Entity
@@ -16,7 +17,9 @@ public class Customer {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
+  @NotBlank(message = "null name")
   private String name;
+  @NotBlank(message = "null email")
   private String email;
   private int trangthai;
   @ManyToOne

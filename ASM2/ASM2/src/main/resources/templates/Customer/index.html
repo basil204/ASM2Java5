@@ -5,25 +5,75 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>User Table</title>
   <!-- Bootstrap CSS -->
-  <link rel="stylesheet"
-        href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <style>
-    .password-input {
-      display: none;
+    body {
+      background-color: #f8f9fa; /* Sử dụng màu nền nhẹ */
+      font-family: 'Roboto', sans-serif;
+    }
+    /* Chỉnh màu nền và màu chữ của các nút và đường viền */
+    .btn-primary, .btn-outline-secondary {
+      border: 1px solid #6a11cb;
+    }
+    .btn-primary {
+      background-color: #6a11cb;
+      color: white;
+    }
+    .btn-primary:hover {
+      background-color: #2575fc; /* Hiệu ứng hover */
+    }
+    .btn-outline-secondary {
+      color: #6a11cb;
+    }
+    .btn-outline-secondary:hover {
+      background-color: #6a11cb;
+      color: white;
+    }
+    /* Chỉnh màu nền và màu chữ của tiêu đề bảng */
+    .table thead {
+      background: linear-gradient(to right, #6a11cb, #2575fc);
+      color: white;
+    }
+    /* Bo góc và áp dụng hiệu ứng shadow */
+    .table {
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    /* Chỉnh màu nền và màu chữ của các ô input */
+    .form-control {
+      background-color: #fff; /* Màu nền trắng */
+      color: #333; /* Màu chữ tối */
+    }
+    /* Hiệu ứng focus của các ô input */
+    .form-control:focus {
+      box-shadow: none;
+      border-color: #6a11cb;
+    }
+    /* Định dạng div chứa nút "Quay Lại" */
+    .go-back {
+      margin-right: auto;
     }
   </style>
 </head>
 <body>
-<a href="/customer/refund" type="button" class="btn btn-primary">aaaaaaaa</a>
 <div class="container mt-5">
-  <h2>User Table</h2>
-  <table class="table">
-    <thead>
+  <div class="d-flex justify-content-between mb-3">
+    <!-- Sử dụng lớp "go-back" để căn chỉnh sang trái -->
+    <div class="go-back">
+      <a th:href="@{/home}" type="button" class="btn btn-primary">Quay Lai</a>
+    </div>
+    <a th:href="@{/customer/add}" type="button" class="btn btn-primary">Add Customer</a>
+  </div>
+  <h2 class="mb-4">Customer Table</h2>
+  <table class="table table-bordered table-striped table-hover">
+    <thead class="thead-dark">
     <tr>
       <th>ID</th>
       <th>Name</th>
-      <th>Username</th>
-      <th>Password</th>
+      <th>Email</th>
+      <th>User Name</th>
+      <th>Actions</th>
     </tr>
     </thead>
     <tbody>
@@ -32,13 +82,10 @@
       <td th:text="${x.name}"></td>
       <td th:text="${x.email}"></td>
       <td th:text="${x.user.name}"></td>
-      <th>
-        <a th:href="@{/customer/edit/{id}(id=${x.id})}" type="button"
-           class="btn btn-primary">edit</a>
-        <a th:href="@{/customer/delete/{id}(id=${x.id})}" type="button"
-           class="btn btn-primary">Khoa</a>
-        <a th:href="@{/customer/add}" type="button" class="btn btn-primary">add</a>
-      </th>
+      <td>
+        <a th:href="@{/customer/edit/{id}(id=${x.id})}" type="button" class="btn btn-sm btn-warning">Edit</a>
+        <a th:href="@{/customer/delete/{id}(id=${x.id})}" type="button" class="btn btn-sm btn-danger">Lock</a>
+      </td>
     </tr>
     </tbody>
   </table>
@@ -48,7 +95,5 @@
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-
 </body>
 </html>

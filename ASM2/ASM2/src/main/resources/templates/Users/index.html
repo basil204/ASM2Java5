@@ -5,25 +5,72 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>User Table</title>
   <!-- Bootstrap CSS -->
-  <link rel="stylesheet"
-        href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <style>
-    .password-input {
-      display: none;
+    body {
+      background-color: #f8f9fa; /* Sử dụng màu nền nhẹ */
+      font-family: 'Roboto', sans-serif;
+    }
+    /* Chỉnh màu nền và màu chữ của các nút và đường viền */
+    .btn-primary, .btn-outline-secondary {
+      border: 1px solid #6a11cb;
+    }
+    .btn-primary {
+      background-color: #6a11cb;
+      color: white;
+    }
+    .btn-primary:hover {
+      background-color: #2575fc; /* Hiệu ứng hover */
+    }
+    .btn-outline-secondary {
+      color: #6a11cb;
+    }
+    .btn-outline-secondary:hover {
+      background-color: #6a11cb;
+      color: white;
+    }
+    /* Chỉnh màu nền và màu chữ của tiêu đề bảng */
+    .table thead {
+      background: linear-gradient(to right, #6a11cb, #2575fc);
+      color: white;
+    }
+    /* Bo góc và áp dụng hiệu ứng shadow */
+    .table {
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    /* Chỉnh màu nền và màu chữ của các ô input */
+    .form-control {
+      background-color: #fff; /* Màu nền trắng */
+      color: #333; /* Màu chữ tối */
+    }
+    /* Hiệu ứng focus của các ô input */
+    .form-control:focus {
+      box-shadow: none;
+      border-color: #6a11cb;
     }
   </style>
 </head>
 <body>
-<a th:href="@{/Views/refund}" type="button" class="btn btn-primary">refund</a>
 <div class="container mt-5">
+  <div class="d-flex justify-content-between mb-3">
+    <!-- Di chuyển nút "Quay Lại" sang bên trái -->
+    <a th:href="@{/home}" type="button" class="btn btn-primary">Quay Lai</a>
+    <div>
+      <a th:href="@{/user/refund}" type="button" class="btn btn-primary mr-2">Refund</a>
+      <a th:href="@{/user/add}" type="button" class="btn btn-primary">Add User</a>
+    </div>
+  </div>
   <h2>User Table</h2>
-  <table class="table">
-    <thead>
+  <table class="table table-bordered table-striped table-hover">
+    <thead class="thead-dark">
     <tr>
       <th>ID</th>
       <th>Name</th>
       <th>Username</th>
       <th>Password</th>
+      <th>Actions</th>
     </tr>
     </thead>
     <tbody>
@@ -33,14 +80,12 @@
       <td th:text="${x.username}"></td>
       <td>
         <span class="password-text" th:text="${x.password}"></span>
-        <input type="password" class="password-input" th:value="${x.password}" disabled>
+        <input type="password" class="password-input form-control" th:value="${x.password}" disabled>
         <button class="btn btn-sm btn-outline-secondary toggle-password">Hide</button>
       </td>
       <td>
-        <a th:href="@{/Views/add}" type="button" class="btn btn-primary">add</a>
-        <a th:href="@{/Views/edit/{id}(id=${x.id})}" type="button" class="btn btn-primary">edit</a>
-        <a th:href="@{/Views/delete/{id}(id=${x.id})}" type="button"
-           class="btn btn-primary">Khoa</a>
+        <a th:href="@{/user/edit/{id}(id=${x.id})}" type="button" class="btn btn-sm btn-warning">Edit</a>
+        <a th:href="@{/user/delete/{id}(id=${x.id})}" type="button" class="btn btn-sm btn-danger">Lock</a>
       </td>
     </tr>
     </tbody>
