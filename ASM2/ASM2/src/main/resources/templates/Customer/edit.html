@@ -8,19 +8,49 @@
   <link rel="stylesheet"
         href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
+<style>
+  body {
+    background-color: #f8f9fa;
+    color: #333;
+  }
+  .form-control {
+    background-color: #f1f3f5;
+    color: #333;
+    border-color: #ced4da;
+  }
+  .form-control:focus {
+    background-color: #e9ecef;
+    border-color: #ced4da;
+    box-shadow: none;
+  }
+  .btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+  }
+  .btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+  }
+</style>
 <body>
 <div class="container mt-5">
-  <h2>Add User</h2>
+  <h2>Edit User</h2>
   <form th:action="@{/customer/update/{id}(id=${data.id})}" method="post">
     <div class="form-group">
       <label>Name:</label>
       <input type="text" class="form-control" name="name" th:value="${data.name}">
     </div>
-
+    <div style="color:red;" th:if="${errors != null and errors[name] != null}" th:value="${data.name}">
+      <span th:text="${errors[name]}"> </span>
+    </div>
     <div class="form-group">
       <label>email:</label>
       <input type="text" class="form-control" name="email" th:value="${data.email}">
     </div>
+    <div style="color:red;" th:if="${errors != null and errors[email] != null}" th:valua="${data.email}">
+      <span th:text="${errors[email]}"></span>
+    </div>
+    <label >Select User:</label>
     <select class="form-control" name="user_id" required>
       <option th:each="x: ${dataUser}" th:value="${x.id}"
               th:text="${x.name}"

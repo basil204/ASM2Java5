@@ -1,6 +1,9 @@
 package com.example.ASM2.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 
 @Entity
 @Table(name = "users")
@@ -8,8 +11,11 @@ public class Users {
 @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
    private Long id;
+  @NotBlank(message = "null name")
     private String name;
+  @NotBlank(message = "null username")
     private String username;
+  @NotBlank(message = "null Password")
    private String password;
     private int trangthai;
     public Users() {

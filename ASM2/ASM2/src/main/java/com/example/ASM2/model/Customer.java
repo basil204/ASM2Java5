@@ -7,6 +7,9 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Entity
@@ -16,7 +19,10 @@ public class Customer {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
+  @NotBlank(message = "null name")
   private String name;
+  @Email(message = "Email should be valid")
+  @Pattern(regexp = "^[a-zA-Z0-9._%+-]+@fpt\\.edu\\.vn$", message = "Email should be in the format @fpt.edu.vn")
   private String email;
   private int trangthai;
   @ManyToOne
